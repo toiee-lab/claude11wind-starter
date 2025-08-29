@@ -1,0 +1,27 @@
+{
+  "title": "Claude11Wind Starter",
+  "description": "11ty と Tailwind CSS と Claude Code を使って簡単にWebサイトを作れるスターターパック。非エンジニア・非デザイナーでも美しいサイトを構築できます。",
+  "url": "https://claude11wind-starter.netlify.app",
+  "author": "Claude11Wind Team",
+  "email": "hello@claude11wind.com",
+  "phone": "",
+  "address": "",
+  "keywords": "11ty, Eleventy, Tailwind CSS, Claude Code, スターターパック, Webサイト作成, 静的サイト, 非エンジニア",
+  "language": "ja",
+  "ogImage": "/assets/images/og-default.jpg",
+  "feedUrl": "/feed.xml",
+  "sitemapUrl": "/sitemap.xml",
+  "buildTime": "2025",
+  "social": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/toiee-lab/claude11wind-starter",
+      "icon": "github"
+    },
+    {
+      "name": "Documentation",
+      "url": "https://docs.claude11wind.com",
+      "icon": "book-open"
+    }
+  ]
+}

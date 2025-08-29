@@ -1,0 +1,22 @@
+[
+  {
+    "text": "ホーム",
+    "url": "/",
+    "icon": "home"
+  },
+  {
+    "text": "機能",
+    "url": "/features/",
+    "icon": "star"
+  },
+  {
+    "text": "使い方",
+    "url": "/howto/",
+    "icon": "book"
+  },
+  {
+    "text": "お問い合わせ",
+    "url": "/contact/",
+    "icon": "mail"
+  }
+]

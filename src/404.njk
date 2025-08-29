@@ -1,0 +1,89 @@
+---
+layout: layouts/base.njk
+title: "404 - ページが見つかりません"
+description: "お探しのページは存在しないか、移動または削除された可能性があります。"
+permalink: /404.html
+excludeFromSitemap: true
+---
+
+<!-- 404 Error Section -->
+<section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <!-- Background image similar to homepage -->
+    <div class="absolute inset-0">
+        <img 
+            src="https://images.unsplash.com/photo-1555848962-6e79363ec379?w=1200&q=80&fm=webp&fit=crop" 
+            alt="Clean minimal workspace - path not found" 
+            class="w-full h-full object-cover"
+            loading="lazy" 
+            decoding="async"
+        >
+        <div class="absolute inset-0 bg-gradient-to-br from-white/95 via-white/90 to-primary-50/90"></div>
+    </div>
+    
+    <!-- Simple background decoration -->
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-1/4 left-1/6 w-32 h-32 bg-primary-100 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent-100 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto">
+            <!-- 404 Icon -->
+            <div class="mb-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-24 h-24 mx-auto mb-6 bg-primary-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="file-question" class="w-12 h-12 text-primary-600"></i>
+                </div>
+            </div>
+            
+            <!-- Error Code -->
+            <h1 class="text-8xl md:text-9xl font-bold text-gray-200 mb-4 leading-none" data-aos="fade-up" data-aos-delay="200">
+                404
+            </h1>
+            
+            <!-- Error Title -->
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight" data-aos="fade-up" data-aos-delay="300">
+                ページが見つかりません
+            </h2>
+            
+            <!-- Error Message -->
+            <p class="text-xl md:text-2xl text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+                申し訳ございません。お探しのページは存在しないか、<br class="hidden md:block">
+                移動または削除された可能性があります。
+            </p>
+            
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16" data-aos="fade-up" data-aos-delay="500">
+                <a href="/" class="group bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <i data-lucide="home" class="inline-block w-5 h-5 mr-3"></i>
+                    ホームに戻る
+                    <i data-lucide="arrow-right" class="inline-block w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <button onclick="window.history.back()" class="group bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-full font-medium text-lg border-2 border-gray-200 transition-all duration-300">
+                    <i data-lucide="arrow-left" class="inline-block w-5 h-5 mr-3"></i>
+                    前のページに戻る
+                </button>
+            </div>
+            
+            <!-- Quick Navigation -->
+            <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="600">
+                <div class="mb-6">
+                    <span class="inline-block px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">
+                        <i data-lucide="compass" class="inline-block w-4 h-4 mr-2"></i>
+                        よく利用されるページ
+                    </span>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {% for item in navigation %}
+                    <a href="{{ item.url }}" class="group flex items-center justify-center p-4 bg-gray-50 hover:bg-primary-50 rounded-2xl transition-all duration-300 border-2 border-transparent hover:border-primary-200">
+                        <div class="w-10 h-10 bg-gray-200 group-hover:bg-primary-100 rounded-lg flex items-center justify-center mr-3 transition-all duration-300">
+                            <i data-lucide="{{ item.icon }}" class="w-5 h-5 text-gray-600 group-hover:text-primary-600"></i>
+                        </div>
+                        <span class="text-gray-700 group-hover:text-primary-700 font-medium">{{ item.text }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

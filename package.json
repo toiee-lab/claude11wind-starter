@@ -1,0 +1,59 @@
+{
+  "name": "eleventy-tailwind-starter",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A modern starter kit for Eleventy (11ty) with Tailwind CSS v4.1, optimized for quick development and production builds.",
+  "main": "eleventy.config.js",
+  "homepage": "https://github.com/yourusername/eleventy-tailwind-starter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/eleventy-tailwind-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/eleventy-tailwind-starter/issues"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production eleventy",
+    "build:dev": "eleventy",
+    "serve": "eleventy --serve --quiet",
+    "start": "npm run serve",
+    "clean": "rm -rf _site",
+    "debug": "DEBUG=Eleventy* eleventy",
+    "reset": "npm run clean && npm install",
+    "setup": "npm install && npm run build",
+    "lint": "echo \"Linting not configured yet\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "search": "node dev-tools/unsplash-search.js"
+  },
+  "keywords": [
+    "eleventy",
+    "11ty",
+    "tailwindcss",
+    "static-site-generator",
+    "jamstack",
+    "starter",
+    "template",
+    "responsive",
+    "modern",
+    "fast"
+  ],
+  "author": "Claude Code Assistant",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
+    "@tailwindcss/postcss": "^4.1.12",
+    "cross-env": "^10.0.0",
+    "cssnano": "^7.1.1",
+    "eleventy-plugin-toc": "^1.1.5",
+    "htmlnano": "^2.1.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.0",
+    "terser": "^5.43.1",
+    "unsplash-js": "^7.0.19",
+    "dotenv": "^16.4.5"
+  }
+}

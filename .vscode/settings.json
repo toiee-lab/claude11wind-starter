@@ -1,0 +1,21 @@
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "liveServer.settings.root": "/_site",
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.NoBrowser": false,
+  "liveServer.settings.ignoreFiles": [
+    ".vscode/**",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.ts",
+    "**/node_modules/**",
+    "**/.*"
+  ],
+  "liveServer.settings.wait": 100,
+  "liveServer.settings.fullReload": false
+}

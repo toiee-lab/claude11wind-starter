@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: {{ site.url }}/sitemap.xml
+
+# Block access to admin areas
+Disallow: /admin/
+Disallow: /_site/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Allow common assets
+Allow: /assets/
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.svg
+Allow: *.webp
+Allow: *.ico

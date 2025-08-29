@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }} | {% endif %}{{ site.title or "My Website" }}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{{ description or site.description or 'Welcome to my website' }}">
+    <meta name="keywords" content="{{ keywords or site.keywords or '' }}">
+    <meta name="author" content="{{ site.author or 'Author' }}">
+    
+    <!-- OGP Tags -->
+    <meta property="og:title" content="{{ title or site.title or 'My Website' }}">
+    <meta property="og:description" content="{{ description or site.description or 'Welcome to my website' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:image" content="{{ ogImage or site.ogImage or '/assets/images/og-default.jpg' }}">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title or site.title or 'My Website' }}">
+    <meta name="twitter:description" content="{{ description or site.description or 'Welcome to my website' }}">
+    <meta name="twitter:image" content="{{ ogImage or site.ogImage or '/assets/images/og-default.jpg' }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }} - Feed" href="{{ site.feedUrl }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    
+    <!-- Animate.css v4.1.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- AOS (Animate On Scroll) v2.3 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Compiled Tailwind CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-sans antialiased bg-white text-gray-900">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-primary-600 text-white p-2 z-50">
+        メインコンテンツにスキップ
+    </a>
+
+    <!-- Header -->
+    {% include "components/header.njk" %}
+
+    <!-- Main Content -->
+    <main id="main" class="min-h-screen">
+        {{ content | safe }}
+    </main>
+
+    <!-- Footer -->
+    {% include "components/footer.njk" %}
+
+    <!-- AOS JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="/assets/js/main.js"></script>
+    
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

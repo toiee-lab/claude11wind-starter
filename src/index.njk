@@ -1,0 +1,370 @@
+---
+layout: layouts/base.njk
+title: "ホーム"
+description: "Claude11Wind Starterは、11tyとTailwind CSSとClaude Codeを使って、非エンジニアでも簡単に美しいWebサイトを作れるスターターパックです。"
+---
+
+<!-- Hero Section -->
+<section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <!-- Hero background image -->
+    <div class="absolute inset-0">
+        <img 
+            src="https://images.unsplash.com/photo-1667430806405-70ef5bc4970f?w=1200&q=80&fm=webp&fit=crop" 
+            alt="Clean modern workspace with laptop" 
+            class="w-full h-full object-cover"
+            loading="lazy" 
+            decoding="async"
+        >
+        <div class="absolute inset-0 bg-gradient-to-br from-white/95 via-white/90 to-primary-50/90"></div>
+    </div>
+    
+    <!-- Simple background decoration -->
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-1/4 left-1/6 w-32 h-32 bg-primary-100 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent-100 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+                    <i data-lucide="code" class="inline-block w-4 h-4 mr-2"></i>
+                    簡単・シンプル・美しい
+                </span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                誰でも簡単に<br>
+                <span class="text-primary-600">美しいWebサイト</span>を<br>
+                作ることができます
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Claude11Wind Starterは、11ty + Tailwind CSS + Claude Codeを使って、<br class="hidden md:block">
+                非エンジニアでも<strong>プロ品質のWebサイト</strong>を簡単に作成できるスターターパックです。
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <a href="#features" class="group bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <i data-lucide="play" class="inline-block w-5 h-5 mr-3"></i>
+                    今すぐ始める
+                    <i data-lucide="arrow-right" class="inline-block w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#how-it-works" class="group bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-full font-medium text-lg border-2 border-gray-200 transition-all duration-300">
+                    <i data-lucide="info" class="inline-block w-5 h-5 mr-3"></i>
+                    使い方を見る
+                </a>
+            </div>
+            
+            <!-- Simple stats -->
+            <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-primary-600">3分</div>
+                    <div class="text-gray-600 text-sm">セットアップ時間</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-accent-600">0円</div>
+                    <div class="text-gray-600 text-sm">初期費用</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-secondary-600">無制限</div>
+                    <div class="text-gray-600 text-sm">カスタマイズ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <div class="inline-flex items-center px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
+                <i data-lucide="star" class="w-4 h-4 mr-2"></i>
+                なぜClaude11Wind Starterなのか
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                非エンジニアでも<br>
+                <span class="text-primary-600">プロ品質のサイト</span>が作れる理由
+            </h2>
+            <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                複雑な技術を知らなくても、美しく高性能なWebサイトを簡単に作成・運用できます
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1: Easy Setup -->
+            <div class="group text-center p-8 rounded-2xl bg-gray-50 hover:bg-primary-50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-16 h-16 bg-primary-100 group-hover:bg-primary-200 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300">
+                    <i data-lucide="zap" class="w-8 h-8 text-primary-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">3分で完成</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    ダウンロードしてコマンド一つ実行するだけ。<br>
+                    すぐに美しいサイトが立ち上がります。
+                </p>
+                <div class="text-sm text-primary-600 font-medium">
+                    ✓ インストール不要<br>
+                    ✓ 設定ファイルなし<br>
+                    ✓ すぐに使える
+                </div>
+            </div>
+            
+            <!-- Feature 2: Claude AI Integration -->
+            <div class="group text-center p-8 rounded-2xl bg-gray-50 hover:bg-accent-50 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-16 h-16 bg-accent-100 group-hover:bg-accent-200 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300">
+                    <i data-lucide="brain" class="w-8 h-8 text-accent-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Claude AIがサポート</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    コード不要でClaude AIが自動で<br>
+                    デザインやコンテンツを作成します。
+                </p>
+                <div class="text-sm text-accent-600 font-medium">
+                    ✓ 自動デザイン生成<br>
+                    ✓ コンテンツ提案<br>
+                    ✓ リアルタイム修正
+                </div>
+            </div>
+            
+            <!-- Feature 3: Modern & Fast -->
+            <div class="group text-center p-8 rounded-2xl bg-gray-50 hover:bg-secondary-50 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-16 h-16 bg-secondary-100 group-hover:bg-secondary-200 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300">
+                    <i data-lucide="rocket" class="w-8 h-8 text-secondary-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">モダン＆高速</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    最新技術による高速サイト。<br>
+                    スマホでもサクサク動作します。
+                </p>
+                <div class="text-sm text-secondary-600 font-medium">
+                    ✓ モバイル対応<br>
+                    ✓ 高速表示<br>
+                    ✓ SEO最適化済み
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <div class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-6">
+                <i data-lucide="play" class="w-4 h-4 mr-2"></i>
+                簡単3ステップ
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                <span class="text-primary-600">たった3分</span>で<br>
+                Webサイトを公開
+            </h2>
+            <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                複雑な設定は不要。誰でも簡単にプロ品質のWebサイトを作成できます
+            </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="space-y-12">
+                <!-- Step 1 -->
+                <div class="flex flex-col lg:flex-row items-center gap-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">1</div>
+                            <h3 class="text-2xl font-bold text-gray-900">ダウンロード</h3>
+                        </div>
+                        <p class="text-lg text-gray-700 mb-6">
+                            Claude11Wind Starterをダウンロードして、お気に入りのエディタで開きます。
+                            設定ファイルの編集は必要ありません。
+                        </p>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <code class="text-sm text-gray-800">git clone https://github.com/toiee-lab/claude11wind-starter</code>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg border overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1568716353609-12ddc5c67f04?ixid=M3w3OTY3NTZ8MHwxfHNlYXJjaHwxfHx0ZXJtaW5hbCUyMGNvbW1hbmQlMjBsaW5lJTIwcHJvZ3JhbW1pbmd8ZW58MHwwfHx8MTc1NjQ0Nzg4NXww&ixlib=rb-4.1.0&w=800&q=80&fm=webp&fit=crop" 
+                                alt="Terminal command line for git clone setup" 
+                                class="w-full h-32 object-cover rounded-xl mb-4"
+                                loading="lazy" 
+                                decoding="async"
+                            >
+                            <p class="text-center text-gray-600">すぐに使える<br>設定済みテンプレート</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="flex flex-col lg:flex-row-reverse items-center gap-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-accent-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">2</div>
+                            <h3 class="text-2xl font-bold text-gray-900">Claude AIでカスタマイズ</h3>
+                        </div>
+                        <p class="text-lg text-gray-700 mb-6">
+                            Claude Codeを使って、サイトの内容やデザインを簡単にカスタマイズ。
+                            「もっと青くして」「会社の紹介文を追加して」など自然な言葉で指示するだけ。
+                        </p>
+                        <div class="flex items-center space-x-2 text-sm text-accent-600">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            <span>コード知識不要</span>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg border overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1677691820099-a6e8040aa077?ixid=M3w3OTY3NTZ8MHwxfHNlYXJjaHwxfHxBSSUyMGNoYXRib3QlMjBpbnRlcmZhY2UlMjBkZXNpZ258ZW58MHwwfHx8MTc1NjQ0NzkzOXww&ixlib=rb-4.1.0&w=800&q=80&fm=webp&fit=crop" 
+                                alt="Claude AIチャットインターフェース - 自然な言葉でサイトカスタマイズ" 
+                                class="w-full h-32 object-cover rounded-xl mb-4"
+                                loading="lazy" 
+                                decoding="async"
+                            >
+                            <p class="text-center text-gray-600">AIが自動で<br>デザイン&コンテンツ生成</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="flex flex-col lg:flex-row items-center gap-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-secondary-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">3</div>
+                            <h3 class="text-2xl font-bold text-gray-900">公開</h3>
+                        </div>
+                        <p class="text-lg text-gray-700 mb-6">
+                            Netlify、Vercelなど人気のホスティングサービスに1クリックでデプロイ。
+                            独自ドメインも簡単に設定できます。
+                        </p>
+                        <div class="flex items-center space-x-2 text-sm text-secondary-600">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            <span>SSL証明書自動取得</span>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg border overflow-hidden">
+                            <img 
+                                src="https://images.unsplash.com/photo-1633859013231-d4c0132d1333?ixid=M3w3OTY3NTZ8MHwxfHNlYXJjaHwxfHxjbG91ZCUyMGRlcGxveW1lbnQlMjBnbG9iYWwlMjBuZXR3b3JrfGVufDB8MHx8fDE3NTY0NDc5OTZ8MA&ixlib=rb-4.1.0&w=800&q=80&fm=webp&fit=crop" 
+                                alt="クラウドデプロイメント - 世界中からアクセス可能な高速CDN" 
+                                class="w-full h-32 object-cover rounded-xl mb-4"
+                                loading="lazy" 
+                                decoding="async"
+                            >
+                            <p class="text-center text-gray-600">世界中からアクセス可能<br>高速CDN対応</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technology Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <div class="inline-flex items-center px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm font-medium mb-6">
+                <i data-lucide="cpu" class="w-4 h-4 mr-2"></i>
+                使用技術
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                最新技術で<br>
+                <span class="text-secondary-600">高性能・高品質</span>を実現
+            </h2>
+            <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                実績のある最新技術の組み合わせで、安心してお使いいただけます
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- 11ty -->
+            <div class="text-center p-8 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="zap" class="w-8 h-8 text-primary-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">11ty (Eleventy)</h3>
+                <p class="text-gray-600 mb-4">
+                    高速な静的サイトジェネレーター。<br>
+                    ビルド時間わずか数秒で高品質サイトを生成。
+                </p>
+                <div class="text-sm text-primary-600 font-medium">超高速ビルド</div>
+            </div>
+            
+            <!-- Tailwind CSS -->
+            <div class="text-center p-8 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-16 h-16 bg-accent-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="palette" class="w-8 h-8 text-accent-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Tailwind CSS</h3>
+                <p class="text-gray-600 mb-4">
+                    世界で最も人気のCSSフレームワーク。<br>
+                    美しいデザインを簡単に実現。
+                </p>
+                <div class="text-sm text-accent-600 font-medium">デザイン自由自在</div>
+            </div>
+            
+            <!-- Claude Code -->
+            <div class="text-center p-8 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-16 h-16 bg-secondary-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="brain" class="w-8 h-8 text-secondary-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Claude Code</h3>
+                <p class="text-gray-600 mb-4">
+                    AI支援開発環境。<br>
+                    自然な言葉でサイトをカスタマイズ可能。
+                </p>
+                <div class="text-sm text-secondary-600 font-medium">AI自動生成</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-br from-primary-600 to-primary-700">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+        <div class="max-w-3xl mx-auto text-white">
+            <div class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
+                <i data-lucide="rocket" class="w-4 h-4 mr-2"></i>
+                今すぐ始めよう
+            </div>
+            
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                あなたのWebサイトを<br>
+                <span class="text-accent-300">3分で公開</span>しませんか？
+            </h2>
+            
+            <p class="text-xl mb-8 text-white/90 leading-relaxed">
+                Claude11Wind Starterなら、コード知識不要で美しいWebサイトが作れます。<br>
+                まずは無料で試してみてください。
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <a href="https://github.com/toiee-lab/claude11wind-starter" class="group bg-white text-primary-700 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105">
+                    <i data-lucide="download" class="inline-block w-5 h-5 mr-3"></i>
+                    今すぐダウンロード
+                    <i data-lucide="arrow-right" class="inline-block w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="/contact/" class="group bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300">
+                    <i data-lucide="help-circle" class="inline-block w-5 h-5 mr-3"></i>
+                    質問・相談する
+                </a>
+            </div>
+            
+            <!-- Simple features list -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 text-sm">
+                <div class="flex items-center justify-center space-x-2">
+                    <i data-lucide="check" class="w-4 h-4 text-accent-300"></i>
+                    <span>完全無料</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2">
+                    <i data-lucide="check" class="w-4 h-4 text-accent-300"></i>
+                    <span>3分セットアップ</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2">
+                    <i data-lucide="check" class="w-4 h-4 text-accent-300"></i>
+                    <span>AI自動生成</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

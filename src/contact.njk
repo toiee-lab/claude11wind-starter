@@ -1,0 +1,245 @@
+---
+layout: layouts/base.njk
+title: "お問い合わせ"
+description: "Claude11Wind Starterについてご不明な点やご質問がありましたら、お気軽にお問い合わせください。"
+---
+
+<!-- Hero Section -->
+<section class="h-[400px] flex items-center justify-center relative overflow-hidden">
+    <!-- Hero background image -->
+    <div class="absolute inset-0">
+        <img 
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80&fm=webp&fit=crop" 
+            alt="Contact and support communication" 
+            class="w-full h-full object-cover"
+            loading="lazy" 
+            decoding="async"
+        >
+        <div class="absolute inset-0 bg-gradient-to-br from-white/95 via-white/90 to-primary-50/90"></div>
+    </div>
+    
+    <!-- Simple background decoration -->
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-1/4 left-1/6 w-32 h-32 bg-primary-100 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent-100 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10" data-aos="fade-up">
+        <div class="max-w-3xl mx-auto">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+                    <i data-lucide="help-circle" class="inline-block w-4 h-4 mr-2"></i>
+                    サポート・お問い合わせ
+                </span>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                質問・相談は<br>
+                <span class="text-primary-600">お気軽に</span>どうぞ
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Claude11Wind Starterについて<br class="hidden md:block">
+                お困りのことがございましたらサポートいたします。
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- Contact Form -->
+                <div data-aos="fade-right">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                        メッセージを送る
+                    </h2>
+                    
+                    <form class="space-y-6" method="POST" netlify>
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                お名前 *
+                            </label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                placeholder="山田太郎"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                メールアドレス *
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                placeholder="your-email@example.com"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="inquiry-type" class="block text-sm font-medium text-gray-700 mb-2">
+                                お問い合わせ種別
+                            </label>
+                            <select 
+                                id="inquiry-type" 
+                                name="inquiry-type"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                            >
+                                <option value="">選択してください</option>
+                                <option value="usage">使い方について</option>
+                                <option value="installation">インストール・セットアップ</option>
+                                <option value="customization">カスタマイズ方法</option>
+                                <option value="error">エラー・トラブル</option>
+                                <option value="feature-request">機能追加の提案</option>
+                                <option value="other">その他</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                                メッセージ *
+                            </label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                rows="6"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
+                                placeholder="お困りのことや質問内容を詳しくお書きください。エラーが出る場合は、どのような操作でエラーが発生するかも含めてお書きください。"
+                            ></textarea>
+                        </div>
+                        
+                        <button 
+                            type="submit"
+                            class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-4 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                        >
+                            <i data-lucide="send" class="inline-block w-5 h-5 mr-2"></i>
+                            メッセージを送信
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Support Information -->
+                <div data-aos="fade-left">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                        サポート情報
+                    </h2>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-2xl">
+                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="clock" class="w-6 h-6 text-primary-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">レスポンス時間</h3>
+                                <p class="text-gray-600">
+                                    通常1〜3営業日以内にご返信いたします。<br>
+                                    緊急の場合はお急ぎであることを明記してください。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-2xl">
+                            <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="book-open" class="w-6 h-6 text-accent-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">まずは使い方をチェック</h3>
+                                <p class="text-gray-600 mb-3">
+                                    よくある質問は使い方ページで解決できることがあります。
+                                </p>
+                                <a href="/howto/" class="text-accent-600 hover:text-accent-700 font-medium transition-colors">
+                                    使い方ページを見る →
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-2xl">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="github" class="w-6 h-6 text-secondary-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">GitHub Issues</h3>
+                                <p class="text-gray-600 mb-3">
+                                    バグ報告や機能リクエストはGitHubでも受け付けています。
+                                </p>
+                                <a href="https://github.com/toiee-lab/claude11wind-starter/issues" target="_blank" class="text-secondary-600 hover:text-secondary-700 font-medium transition-colors">
+                                    GitHubで報告する →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Community Section -->
+<section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">
+                    <i data-lucide="users" class="inline-block w-4 h-4 mr-2"></i>
+                    コミュニティ
+                </span>
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <span class="text-accent-600">みんなで作る</span><br>
+                Claude11Wind Starter
+            </h2>
+            
+            <p class="text-xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Claude11Wind Starterはオープンソースプロジェクトです。<br class="hidden md:block">
+                ユーザーの皆さまからのフィードバックや貢献を歓迎しています。
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-2xl border-2 border-primary-100 hover:border-primary-200 transition-colors">
+                    <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="star" class="w-8 h-8 text-primary-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">フィードバック歓迎</h3>
+                    <p class="text-gray-600">
+                        使いづらい点、改善アイデア、新機能の提案など、どんなフィードバックでも歓迎します。みんなで使いやすくしていきましょう。
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl border-2 border-accent-100 hover:border-accent-200 transition-colors">
+                    <div class="w-16 h-16 bg-accent-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="git-pull-request" class="w-8 h-8 text-accent-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">コントリビューション</h3>
+                    <p class="text-gray-600">
+                        ドキュメントの改善、バグ修正、新機能の追加など、プロジェクトへの貢献をお待ちしています。初心者大歓迎です。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://github.com/toiee-lab/claude11wind-starter" target="_blank" class="group bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <i data-lucide="github" class="inline-block w-5 h-5 mr-3"></i>
+                    GitHubで参加する
+                    <i data-lucide="external-link" class="inline-block w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="/features/" class="group bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-full font-medium text-lg border-2 border-gray-200 transition-all duration-300">
+                    <i data-lucide="star" class="inline-block w-5 h-5 mr-3"></i>
+                    機能一覧を見る
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

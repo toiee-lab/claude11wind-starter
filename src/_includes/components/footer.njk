@@ -1,0 +1,136 @@
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Site Info -->
+            <div class="md:col-span-2">
+                <h3 class="text-xl font-bold mb-4">{{ site.title or "My Website" }}</h3>
+                <p class="text-gray-300 mb-4 leading-relaxed">
+                    {{ site.description or "高品質なWebサイトを、11tyとClaude Codeで効率的に構築・運用しています。" }}
+                </p>
+                {% if site.social %}
+                <div class="flex space-x-4">
+                    {% for social in site.social %}
+                    <a href="{{ social.url }}" 
+                       class="text-gray-400 hover:text-white transition-colors duration-200"
+                       aria-label="{{ social.name }}">
+                        <i data-lucide="{{ social.icon }}" class="h-5 w-5"></i>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">クイックリンク</h4>
+                <ul class="space-y-2">
+                    {% for item in navigation %}
+                    <li>
+                        <a href="{{ item.url }}" 
+                           class="text-gray-300 hover:text-white transition-colors duration-200">
+                            {{ item.text }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">お問い合わせ</h4>
+                <ul class="space-y-2 text-gray-300">
+                    {% if site.email %}
+                    <li class="flex items-center">
+                        <i data-lucide="mail" class="h-4 w-4 mr-2"></i>
+                        <a href="mailto:{{ site.email }}" 
+                           class="hover:text-white transition-colors duration-200">
+                            {{ site.email }}
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.phone %}
+                    <li class="flex items-center">
+                        <i data-lucide="phone" class="h-4 w-4 mr-2"></i>
+                        <a href="tel:{{ site.phone }}" 
+                           class="hover:text-white transition-colors duration-200">
+                            {{ site.phone }}
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.address %}
+                    <li class="flex items-start">
+                        <i data-lucide="map-pin" class="h-4 w-4 mr-2 mt-1 flex-shrink-0"></i>
+                        <span>{{ site.address }}</span>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-800 mt-8 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 text-sm mb-4 md:mb-0">
+                    <p>&copy; {{ "now" | date("%Y") }} {{ site.title or "My Website" }}. All rights reserved.</p>
+                </div>
+                
+                <div class="text-gray-400 text-sm flex items-center">
+                    <span>Built with</span>
+                    <a href="https://www.11ty.dev/" 
+                       class="mx-1 text-primary-400 hover:text-primary-300 transition-colors duration-200">
+                        11ty
+                    </a>
+                    <span>& </span>
+                    <a href="https://claude.ai/code" 
+                       class="ml-1 text-primary-400 hover:text-primary-300 transition-colors duration-200">
+                        Claude Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" 
+            class="fixed bottom-8 right-8 bg-primary-600 hover:bg-primary-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 invisible"
+            aria-label="トップに戻る">
+        <i data-lucide="arrow-up" class="h-5 w-5"></i>
+    </button>
+</footer>
+
+<style>
+    /* Back to top button animations */
+    #back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #back-to-top:hover {
+        transform: translateY(-2px);
+    }
+</style>
+
+<script>
+    // Back to top functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        // Smooth scroll to top
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
