@@ -2,7 +2,7 @@
   "name": "eleventy-tailwind-starter",
   "version": "1.0.0",
   "type": "module",
-  "description": "A modern starter kit for Eleventy (11ty) with Tailwind CSS v4.1, optimized for quick development and production builds.",
+  "description": "A modern starter kit for Eleventy (11ty) with Tailwind CSS v4.1, optimized for Cloudflare Pages deployment.",
   "main": "eleventy.config.js",
   "homepage": "https://github.com/yourusername/eleventy-tailwind-starter",
   "repository": {

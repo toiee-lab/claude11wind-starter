@@ -6,7 +6,7 @@ Claude Code を使って、モダンで、シンプルで、最近っぽいデ�
 
 また、Unsplash から自動で画像をリンク切れをおこなさず取得するためのスクリプトと、それを使うサブエージェントも設定された状態です。ダウンロードして、すぐに使い始めることができます。
 
-Netlify 特化です。
+Cloudflare Pages 特化です。
 
 ## ✨ Features
 
@@ -28,7 +28,7 @@ Netlify 特化です。
 - npm
 - Claude Code
 - Githubアカウント
-- Netlifyアカウント
+- Cloudflareアカウント
 - Visual Studio Code
 - Unsplash 開発者登録して、アプリキーを取得
 

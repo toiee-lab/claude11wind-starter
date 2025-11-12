@@ -55,9 +55,10 @@ export default function(eleventyConfig) {
   });
   
   // Sitemap plugin
+  // Note: Update hostname to your Cloudflare Pages domain (e.g., https://your-project.pages.dev)
   eleventyConfig.addPlugin(pluginSitemap, {
     sitemap: {
-      hostname: "https://example.com"
+      hostname: "https://your-project.pages.dev"
     }
   });
   
@@ -69,6 +70,7 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets/js");
   eleventyConfig.addPassthroughCopy("src/favicon.ico");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
+  eleventyConfig.addPassthroughCopy("src/_redirects");
   
   // Watch additional files
   eleventyConfig.addWatchTarget("src/assets/css/");
