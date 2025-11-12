@@ -3,7 +3,6 @@
 ## プロジェクト概要
 
 非エンジニア・非デザイナーがClaude Codeを使って11tyでWebサイトを構築・運用するためのプロジェクト。
-ブログ等の動的コンテンツは外部サービス（Substack、note.com等）の利用を前提とする。
 
 **デプロイメント**: Cloudflare Pages 特化の設定となっています。
 
@@ -19,57 +18,95 @@
 - プロフェッショナルなデザインと適切な画像を使用したWebページの作成・編集
 - ユーザーの意図を理解し、魅力的なWebページを作成
 
+## コンテンツ管理システム
+
+### WordPress からの移行者向けガイド
+
+多くのユーザーはWordPressから移行してきます。Eleventyは異なるアプローチでコンテンツを管理しますが、より柔軟でシンプルです。
+
+#### 概念マッピング表
+
+| WordPress | Eleventy | 実装方法 | 説明 |
+|-----------|----------|---------|------|
+| **投稿（Posts）** | **Collections** | Markdownファイル + `tags: blog` | 個別記事ページ + 一覧ページを自動生成 |
+| **カスタム投稿タイプ** | **タグ別コレクション** | `tags: news`, `tags: portfolio` など | タグで区別して複数のコレクションを作成 |
+| **カテゴリ/タグ** | **Front Matter + Collections** | `category: technology` など | YAMLでメタデータを定義し、フィルタリング |
+| **カスタムフィールド** | **Front Matter** | YAML形式で任意のフィールド定義 | 完全な自由度 |
+| **固定ページ** | **独立テンプレート** | `about.njk`, `contact.njk` など | `src/` 直下に配置 |
+| **メニュー** | **Global Data** | `_data/navigation.json` | JSONファイルで定義 |
+| **管理画面** | **エディタ + ファイル** | VS Code等でMarkdown編集 | テキストエディタで直接編集 |
+
+### Collections vs Global Data の使い分け
+
+| 基準 | Collections | Global Data |
+|-----|------------|-------------|
+| **個別ページが必要** | ✓ 適している | × 不適 |
+| **一覧表示のみ** | △ 可能だが過剰 | ✓ 適している |
+| **ページネーション** | ✓ 適している | × 不可 |
+| **タグ・カテゴリ分類** | ✓ 適している | × 不可 |
+| **前後の記事リンク** | ✓ 適している | × 不可 |
+| **サイト設定データ** | × 不適 | ✓ 適している |
+| **ナビゲーション** | × 不適 | ✓ 適している |
+
+#### 判断基準
+
+**Collectionsを使うべき場合**:
+- ✓ ブログ記事のように、各項目が個別ページを持つ
+- ✓ 一覧ページ、詳細ページ、カテゴリ別表示などが必要
+- ✓ ページネーション（ページ分割）が必要
+- ✓ タグやカテゴリで分類したい
+- ✓ 「前の記事」「次の記事」リンクが必要
+
+**Global Dataを使うべき場合**:
+- ✓ チームメンバーや顧客の声など、個別ページは不要で一覧表示のみ
+- ✓ サイト全体で使う設定情報（サイト名、連絡先など）
+- ✓ ナビゲーションメニューの項目
+- ✓ 実績数値など、シンプルなデータ
+
+**実例**:
+- ブログ記事 → **Collections**（詳細ページが必要）
+- お知らせ → **Collections**（詳細ページが必要）
+- 実績紹介 → **Collections**（詳細ページが必要）
+- チームメンバー → **Global Data**（一覧表示のみ）
+- 顧客の声 → **Global Data**（一覧表示のみ）
+- FAQ → **Global Data**（一覧表示のみ）
+
+**詳細ガイド**:
+- [Collections完全ガイド](project-docs/COLLECTION_DETAILED_GUIDE.md) - 実装手順、Front Matter、ファイル命名規則など
+- [Global Data完全ガイド](project-docs/GLOBAL_DATA_GUIDE.md) - データファイルの作成方法、使用例など
+
 ## ディレクトリ構成
 
+### 基本構成（サマリー）
+
 ```
-11ty/
+eleventy-project/
 ├── src/                    # ソースファイル（11tyが処理）
-│   ├── _data/             # サイト全体のデータ
-│   │   ├── metadata.json  # サイトのメタ情報
-│   │   ├── navigation.json # ナビゲーション設定
-│   │   └── site.json      # サイト設定
+│   ├── _data/             # グローバルデータ（JSON/JS）
 │   ├── _includes/         # テンプレート・レイアウト
-│   │   ├── layouts/       # 基本レイアウト
-│   │   │   └── base.njk   # ベーステンプレート
-│   │   └── components/    # 再利用可能なコンポーネント
-│   │       ├── header.njk # ヘッダーコンポーネント
-│   │       └── footer.njk # フッターコンポーネント
-│   ├── assets/            # 静的アセット
-│   │   ├── css/          
-│   │   │   └── tailwind.css # Tailwindスタイル
-│   │   ├── js/           
-│   │   │   └── main.js    # メインJavaScript
-│   │   └── images/        # 画像ファイル
+│   ├── assets/            # 静的アセット（CSS、JS、画像）
+│   ├── blog/              # ブログ（Collections）
+│   ├── news/              # お知らせ（Collections）
+│   ├── portfolio/         # 実績（Collections）
 │   ├── index.njk          # トップページ
-│   ├── about.njk          # Aboutページ
-│   ├── services.njk       # Servicesページ
-│   ├── contact.njk        # Contactページ
-│   ├── 404.njk           # 404エラーページ
-│   ├── feed.njk          # RSSフィード
-│   ├── sitemap.njk       # サイトマップ
-│   └── robots.txt        # クローラー設定
-│
-├── _site/                 # ビルド出力（11tyが生成）   
-│
-├── dev-tools/            # 開発用ツール
-│   └── unsplash-search.js # Unsplash画像検索スクリプト
-│
-├── project-docs/         # プロジェクトドキュメント（ユーザーのメモ用）
-│
-├── eleventy.config.js    # 11ty設定ファイル
-├── package.json          # Node.js依存関係
-├── package-lock.json     # 依存関係のロックファイル
-├── .gitignore           # Git除外設定
-├── .env.local.example   # 環境変数のサンプル
-├── CLAUDE.md            # このファイル（AI用指示書）
-└── README.md            # プロジェクト説明
+│   └── ...                # その他の固定ページ
+├── _site/                 # ビルド出力（自動生成、Git管理外）
+├── dev-tools/             # 開発用ツール
+├── project-docs/          # プロジェクトドキュメント
+├── eleventy.config.js     # 11ty設定ファイル
+├── package.json           # Node.js依存関係
+└── README.md              # プロジェクト説明
 ```
 
-### 各ディレクトリの役割
-- **src/**: 11tyが処理するソースファイル。全てのコンテンツとテンプレートを格納
-- **_site/**: 11tyがビルドした静的サイト。デプロイ用（Git管理外）
-- **dev-tools/**: 開発支援スクリプト（画像検索等）
-- **project-docs/**: ユーザーのメモや資料を保存する場所。プロジェクト固有の情報（原稿、企画書など）を自由に格納できる
+**詳細なディレクトリ構造**: [ディレクトリ構造詳細ガイド](project-docs/DIRECTORY_STRUCTURE.md)
+
+### コンテンツタイプ別の使い分け
+
+| コンテンツタイプ | 保存場所 | 説明 |
+|----------------|---------|------|
+| **個別ページあり** | `src/blog/`, `src/news/`, `src/portfolio/` | Collections（専用ディレクトリ + Markdownファイル） |
+| **一覧表示のみ** | `src/_data/team.json`, `src/_data/testimonials.json` | Global Data（JSONファイル） |
+| **固定ページ** | `src/about.njk`, `src/contact.njk` | `src/` 直下に配置 |
 
 ## テンプレート管理ガイドライン
 
@@ -141,7 +178,7 @@
 
 2. **スタイル仕様**
    - **初期状態**: 透明背景でヒーローセクションの上に重ねる（テキスト/ボタンはコントラストを確保）
-   - **スクロール時**: 
+   - **スクロール時**:
      - 背景: blur 12% + 白/ダーク背景を70%不透明度
      - テキスト: コントラストのある色
    - **カレントページ**: 異なる色または太字でハイライト
@@ -166,6 +203,47 @@
 - dev-tools/unsplash-search.jsを利用してUnsplash APIで画像を検索
 - Claudeの学習データからUnsplash画像を取得しない（リンク切れやハルシネーションを防ぐため）
 
+## 実装例
+
+詳細な実装例は、`project-docs/examples/` ディレクトリに用意されています：
+
+### 実装例1: ブログ機能
+
+**概要**: ブログ記事の作成、一覧表示、ページネーション
+
+**実装手順**:
+1. `src/blog/` ディレクトリ作成
+2. `blog.json` で共通設定（`tags: blog`, レイアウト、パーマリンク）
+3. `layouts/blog-post.njk` でレイアウト作成
+4. Markdownファイルで記事作成（Front Matter: title, date, description など）
+5. `index.njk` で一覧ページ作成（ページネーション付き）
+
+**詳細**: [Collections完全ガイド](project-docs/COLLECTION_DETAILED_GUIDE.md)
+
+### 実装例2: お知らせ機能
+
+**概要**: お知らせの個別ページ + トップページに最新3件表示
+
+**詳細**: [実装例: お知らせ機能](project-docs/examples/NEWS_FEATURE.md)
+
+### 実装例3: チームメンバー紹介
+
+**概要**: Global Dataを使った一覧表示（個別ページ不要）
+
+**詳細**: [実装例: チームページ](project-docs/examples/TEAM_PAGE.md)
+
+### 実装例4: 顧客の声
+
+**概要**: Global Dataで推薦文を管理し、トップページに表示
+
+**詳細**: [実装例: 顧客の声](project-docs/examples/TESTIMONIALS.md)
+
+### 実装例5: 実績紹介
+
+**概要**: Collectionsを使ったポートフォリオ + 画像ギャラリー
+
+**詳細**: [実装例: ポートフォリオ](project-docs/examples/PORTFOLIO.md)
+
 ## 重要なルール
 
 1. **ファイルエンコーディング**: 日本語文字化けを防ぐため常にUTF-8で保存
@@ -175,6 +253,15 @@
 5. **プロジェクト構造**: 確立されたディレクトリ構造に従う
 6. **品質基準**: ベストプラクティスに従った清潔で簡潔なコードを記述
 7. **ユーザーフォーカス**: ユーザーが創造的自由を望むか、特定の実装を望むかに基づいてアプローチを適応
+8. **コンテンツタイプの選択**:
+   - **個別ページが必要** → Collections（専用ディレクトリ + Markdownファイル）
+   - **一覧表示のみ** → Global Data（`_data/` + JSONファイル）
+9. **Front Matter**: Markdownファイルは常にUTF-8エンコーディングで保存し、必須フィールド（`title`, `date`）を含める
+10. **コレクションの命名**: タグ名は英語の小文字 + ハイフンで統一（例: `blog`, `news`, `portfolio`）
+11. **ファイル命名規則**:
+    - ブログ・お知らせ: `YYYY-MM-DD-slug.md` 形式
+    - 実績・ポートフォリオ: `project-name.md` 形式
+12. **WordPress移行者へのサポート**: ユーザーがWordPressの用語（投稿、カスタム投稿タイプ等）を使った場合、Eleventyの対応概念（Collections、Global Data）に変換して説明する
 
 ## ドキュメント構成
 
@@ -199,16 +286,26 @@
 - プロジェクトの方針とデザイン哲学
 - テンプレート管理のルール
 - 技術仕様とベストプラクティス
-- ディレクトリ構成
+- ディレクトリ構成（サマリー）
 - 画像管理の方法
 - 重要なルール
+- 外部ドキュメントへの参照
 
 **重要**: ユーザーがプロジェクトの方針を変更する際は、CLAUDE.mdを編集してもらう。
 
 ### project-docs/
 ユーザーのメモや資料を保存する場所。プロジェクト固有の情報（原稿、企画書、メモなど）を自由に格納できる。
 
-**重要**: この場所はユーザーが自由に使うため、システム側でファイルを追加しないこと。
+**システムが提供するドキュメント**:
+- `COLLECTION_DETAILED_GUIDE.md`: Collections完全ガイド
+- `GLOBAL_DATA_GUIDE.md`: Global Data完全ガイド
+- `DIRECTORY_STRUCTURE.md`: ディレクトリ構造詳細
+- `examples/NEWS_FEATURE.md`: お知らせ機能の実装例
+- `examples/TEAM_PAGE.md`: チームページの実装例
+- `examples/TESTIMONIALS.md`: 顧客の声の実装例
+- `examples/PORTFOLIO.md`: ポートフォリオの実装例
+
+**重要**: この場所はユーザーが自由に使うため、システム側でファイルを追加する場合は最小限にすること。
 
 ## 作業時の注意事項
 
@@ -216,6 +313,7 @@
 - 技術的な卓越性を維持しながら、ユーザーのメッセージを効果的に伝える
 - プロフェッショナルで高性能、視覚的に魅力的なWebサイトを作成することが目標
 - 非エンジニア向けのプロジェクトであることを常に意識し、分かりやすい説明とサポートを提供すること
+- 詳細な実装手順が必要な場合は、`project-docs/` 内の外部ドキュメントを参照するよう案内すること
 
 ## 基本設定まとめ
 
