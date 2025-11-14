@@ -1,0 +1,35 @@
+{# ブログ記事用の構造化データ #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ title }}",
+  "datePublished": "{{ date | date: '%Y-%m-%d' }}",
+  {% if dateModified %}
+  "dateModified": "{{ dateModified | date: '%Y-%m-%d' }}",
+  {% else %}
+  "dateModified": "{{ date | date: '%Y-%m-%d' }}",
+  {% endif %}
+  "author": {
+    "@type": "Person",
+    "name": "{{ author or site.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{ site.ogImage }}"
+    }
+  },
+  "description": "{{ description or site.description }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url }}"
+  }
+  {% if image %}
+  ,
+  "image": "{{ site.url }}{{ image }}"
+  {% endif %}
+}
+</script>

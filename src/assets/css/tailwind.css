@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
-/* Tailwind CSS v4 自動コンテンツ検出の補完 - .njkファイルを明示的に指定 */
-@source "../**/*.njk";
-@source "../_includes/**/*.njk";
+/* Tailwind CSS v4 自動コンテンツ検出 - .njk, .md, .html, .js ファイルを指定 */
+@source "../**/*.{njk,md,html,js}";
 
 @theme {
   /* Primary - Calm Blue */

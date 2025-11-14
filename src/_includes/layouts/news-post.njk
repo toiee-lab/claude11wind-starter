@@ -1,0 +1,54 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- パンくずリスト -->
+    <nav class="mb-8 text-sm text-gray-600" aria-label="パンくずリスト">
+        <ol class="flex items-center space-x-2">
+            <li><a href="/" class="hover:text-primary-600">ホーム</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li><a href="/news/" class="hover:text-primary-600">お知らせ</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li class="text-gray-900">{{ title }}</li>
+        </ol>
+    </nav>
+
+    <!-- ヘッダー -->
+    <header class="mb-12">
+        {% if category %}
+        <div class="mb-4">
+            <span class="inline-block px-3 py-1 text-sm font-semibold bg-accent-100 text-accent-700 rounded">{{ category }}</span>
+        </div>
+        {% endif %}
+
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ title }}</h1>
+
+        <div class="flex items-center gap-2 text-gray-600">
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            <time datetime="{{ date | date: '%Y-%m-%d' }}">{{ date | date }}</time>
+        </div>
+    </header>
+
+    <!-- 本文 -->
+    <div class="prose prose-lg max-w-none">
+        {{ content | safe }}
+    </div>
+
+    <!-- フッター -->
+    <footer class="mt-12 pt-8 border-t border-gray-200">
+        <div class="text-center">
+            <a href="/news/" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>お知らせ一覧に戻る</span>
+            </a>
+        </div>
+    </footer>
+</article>
+
+<script>
+    // Lucide icons initialization
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>

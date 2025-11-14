@@ -1,0 +1,103 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- パンくずリスト -->
+    <nav class="mb-8 text-sm text-gray-600" aria-label="パンくずリスト">
+        <ol class="flex items-center space-x-2">
+            <li><a href="/" class="hover:text-primary-600">ホーム</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li><a href="/portfolio/" class="hover:text-primary-600">実績紹介</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li class="text-gray-900">{{ title }}</li>
+        </ol>
+    </nav>
+
+    <!-- ヘッダー -->
+    <header class="mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ title }}</h1>
+
+        <div class="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
+            {% if client %}
+            <div class="flex items-center gap-2">
+                <i data-lucide="briefcase" class="w-4 h-4"></i>
+                <span>クライアント: {{ client }}</span>
+            </div>
+            {% endif %}
+
+            {% if date %}
+            <div class="flex items-center gap-2">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <time datetime="{{ date | date: '%Y-%m-%d' }}">{{ date | date }}</time>
+            </div>
+            {% endif %}
+
+            {% if category %}
+            <div class="flex items-center gap-2">
+                <i data-lucide="folder" class="w-4 h-4"></i>
+                <span>{{ category }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        {% if tags %}
+        <div class="flex flex-wrap gap-2">
+            {% for tag in tags %}
+            {% if tag != "portfolio" %}
+            <span class="px-3 py-1 text-sm bg-primary-100 text-primary-700 rounded">{{ tag }}</span>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </header>
+
+    <!-- 本文 -->
+    <div class="prose prose-lg max-w-none mb-12">
+        {{ content | safe }}
+    </div>
+
+    <!-- プロジェクト情報 -->
+    {% if url or technologies %}
+    <aside class="p-6 bg-gray-50 rounded-lg mb-12">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">プロジェクト情報</h2>
+
+        {% if url %}
+        <div class="mb-4">
+            <h3 class="text-sm font-semibold text-gray-700 mb-2">Webサイト</h3>
+            <a href="{{ url }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 underline">
+                {{ url }}
+            </a>
+        </div>
+        {% endif %}
+
+        {% if technologies %}
+        <div>
+            <h3 class="text-sm font-semibold text-gray-700 mb-2">使用技術</h3>
+            <div class="flex flex-wrap gap-2">
+                {% for tech in technologies %}
+                <span class="px-2 py-1 text-xs bg-white border border-gray-300 rounded">{{ tech }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </aside>
+    {% endif %}
+
+    <!-- フッター -->
+    <footer class="pt-8 border-t border-gray-200">
+        <div class="text-center">
+            <a href="/portfolio/" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>実績一覧に戻る</span>
+            </a>
+        </div>
+    </footer>
+</article>
+
+<script>
+    // Lucide icons initialization
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>

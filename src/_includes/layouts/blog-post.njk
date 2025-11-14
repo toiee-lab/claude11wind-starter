@@ -1,0 +1,93 @@
+---
+layout: layouts/base.njk
+---
+
+{% include "layouts/blog-post-structured-data.njk" %}
+
+<article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- パンくずリスト -->
+    <nav class="mb-8 text-sm text-gray-600" aria-label="パンくずリスト">
+        <ol class="flex items-center space-x-2">
+            <li><a href="/" class="hover:text-primary-600">ホーム</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li><a href="/blog/" class="hover:text-primary-600">ブログ</a></li>
+            <li><span class="mx-2">/</span></li>
+            <li class="text-gray-900">{{ title }}</li>
+        </ol>
+    </nav>
+
+    <!-- ヘッダー -->
+    <header class="mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{{ title }}</h1>
+
+        <div class="flex flex-wrap items-center gap-4 text-gray-600">
+            <time datetime="{{ date | date: '%Y-%m-%d' }}" class="flex items-center gap-2">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>{{ date | date }}</span>
+            </time>
+
+            {% if author %}
+            <div class="flex items-center gap-2">
+                <i data-lucide="user" class="w-4 h-4"></i>
+                <span>{{ author }}</span>
+            </div>
+            {% endif %}
+
+            {% if tags %}
+            <div class="flex items-center gap-2">
+                <i data-lucide="tag" class="w-4 h-4"></i>
+                <div class="flex flex-wrap gap-2">
+                    {% for tag in tags %}
+                    {% if tag != "blog" %}
+                    <span class="px-2 py-1 text-xs bg-primary-100 text-primary-700 rounded">{{ tag }}</span>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- 本文 -->
+    <div class="prose prose-lg max-w-none">
+        {{ content | safe }}
+    </div>
+
+    <!-- フッター（前後の記事リンク） -->
+    <footer class="mt-12 pt-8 border-t border-gray-200">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {% if collections.blog %}
+                {% set previousPost = collections.blog | getPreviousCollectionItem %}
+                {% set nextPost = collections.blog | getNextCollectionItem %}
+
+                {% if previousPost %}
+                <a href="{{ previousPost.url }}" class="p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition">
+                    <div class="text-sm text-gray-600 mb-1">← 前の記事</div>
+                    <div class="font-semibold text-gray-900">{{ previousPost.data.title }}</div>
+                </a>
+                {% endif %}
+
+                {% if nextPost %}
+                <a href="{{ nextPost.url }}" class="p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition md:text-right">
+                    <div class="text-sm text-gray-600 mb-1">次の記事 →</div>
+                    <div class="font-semibold text-gray-900">{{ nextPost.data.title }}</div>
+                </a>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="mt-8 text-center">
+            <a href="/blog/" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>ブログ一覧に戻る</span>
+            </a>
+        </div>
+    </footer>
+</article>
+
+<script>
+    // Lucide icons initialization
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>

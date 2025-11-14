@@ -1,5 +1,4 @@
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
-import Image from "@11ty/eleventy-img";
 import pluginTOC from "eleventy-plugin-toc";
 import htmlnano from 'htmlnano';
 import pluginSitemap from "@quasibit/eleventy-plugin-sitemap";
@@ -9,18 +8,21 @@ import postcss from "postcss";
 import tailwindcss from "@tailwindcss/postcss";
 import cssnano from "cssnano";
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import path from "path";
 import fs from 'fs';
+
+// 分割した設定ファイルをインポート
+import configureFilters from "./eleventy.config.filters.js";
+import configureShortcodes from "./eleventy.config.shortcodes.js";
+import configureCollections from "./eleventy.config.collections.js";
 
 export default function(eleventyConfig) {
   // PostCSS processor for Tailwind CSS v4
   const processor = postcss([
-    tailwindcss({
-      // Tailwind CSS v4 の自動検出を補完するためのcontent設定
-      content: ['./src/**/*.{njk,html,md,js}']
-    }),
-    cssnano({ preset: 'default' }),
+    tailwindcss(),
+    // 開発モードではCSS圧縮を無効化してデバッグを容易に
+    ...(process.env.NODE_ENV === 'production' ? [cssnano({ preset: 'default' })] : [])
   ]);
 
   //compile tailwind before eleventy processes the files
@@ -71,53 +73,29 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/favicon.ico");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("src/_redirects");
+
+  // Copy local libraries from node_modules
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/animate.css/animate.min.css": "assets/vendor/animate.min.css"
+  });
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/aos/dist/aos.css": "assets/vendor/aos.css"
+  });
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/aos/dist/aos.js": "assets/vendor/aos.js"
+  });
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/lucide-static/dist/umd/lucide.js": "assets/vendor/lucide.js"
+  });
   
   // Watch additional files
   eleventyConfig.addWatchTarget("src/assets/css/");
   eleventyConfig.addWatchTarget("src/assets/js/");
 
-  // Image shortcode for optimization
-  eleventyConfig.addAsyncShortcode("image", async function(src, alt, sizes = "100vw", loading = "lazy") {
-    if(alt === undefined) {
-      throw new Error(`Missing \`alt\` on image from: ${src}`);
-    }
-
-    let metadata = await Image(src, {
-      widths: [300, 600, 900, 1200],
-      formats: ["webp", "jpeg"],
-      outputDir: "_site/assets/images/optimized",
-      urlPath: "/assets/images/optimized/",
-    });
-
-    let imageAttributes = {
-      alt,
-      sizes,
-      loading,
-      decoding: "async",
-    };
-
-    return Image.generateHTML(metadata, imageAttributes);
-  });
-
-  // Date filters
-  eleventyConfig.addFilter("date", function(date, format) {
-    const d = date === "now" ? new Date() : new Date(date);
-    if (format === "%Y") {
-      return d.getFullYear();
-    }
-    // Add more date formats as needed
-    return d.toLocaleDateString('ja-JP');
-  });
-
-  // URL filter for absolute URLs
-  eleventyConfig.addFilter("absoluteUrl", function(url, base) {
-    try {
-      return new URL(url, base).toString();
-    } catch(e) {
-      console.log(`Trying to convert ${url} to be an absolute url with base ${base} and failed.`);
-      return url;
-    }
-  });
+  // 分割した設定を適用
+  configureFilters(eleventyConfig);
+  configureShortcodes(eleventyConfig);
+  configureCollections(eleventyConfig);
 
   // HTML minification (production only)
   if (process.env.NODE_ENV === "production") {
@@ -169,18 +147,6 @@ export default function(eleventyConfig) {
         }
       }
     }
-  });
-
-  // Collections for different content types
-  eleventyConfig.addCollection("pages", function(collection) {
-    return collection.getFilteredByGlob("src/pages/*.md");
-  });
-
-  // Create sitemap data
-  eleventyConfig.addCollection("sitemap", function(collection) {
-    return collection.getAll()
-      .filter(item => item.outputPath && item.outputPath.endsWith('.html'))
-      .filter(item => !item.data.excludeFromSitemap);
   });
 
   return {
