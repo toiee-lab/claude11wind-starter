@@ -219,15 +219,17 @@ eleventy-project/
 ## 画像管理
 
 ### 画像取得プロセス
-- 画像が提供されていない場合、`unsplash-image-finder`サブエージェントを呼び出してUnsplashから検索
+- 画像が提供されていない場合、`/unsplash-image-finder` Skillを使用してUnsplashから検索
 - Unsplash URLを最適化: `https://images.unsplash.com/[photo-id]?w=800&q=80`
 - 画像リンクが機能していることを常に確認
 - lazy loadingとasync decodingを適用
 
-### unsplash-image-finderサブエージェント
+### unsplash-image-finder Skill
 - Webページ作成・編集時に画像が必要でユーザーから提供されていない場合に使用
-- dev-tools/unsplash-search.jsを利用してUnsplash APIで画像を検索
+- `/unsplash-image-finder` コマンドで呼び出し可能
+- `.claude/skills/unsplash-image-finder/scripts/unsplash-search.js` を利用してUnsplash APIで画像を検索
 - Claudeの学習データからUnsplash画像を取得しない（リンク切れやハルシネーションを防ぐため）
+- セットアップ方法は `.claude/skills/unsplash-image-finder/README.md` を参照
 
 ## 実装例
 

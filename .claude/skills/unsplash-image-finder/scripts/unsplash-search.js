@@ -9,8 +9,19 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// プロジェクトルートの.env.localを読み込む
-config({ path: join(__dirname, '..', '.env.local') });
+// プロジェクトルートの.env.localを読み込む（複数の候補パスを試行）
+const envPaths = [
+  join(__dirname, '..', '..', '..', '..', '.env.local'),  // プロジェクトルート
+  join(__dirname, '..', '.env.local'),                     // Skill内
+  join(process.cwd(), '.env.local'),                       // カレントディレクトリ
+];
+
+for (const envPath of envPaths) {
+  const result = config({ path: envPath });
+  if (!result.error) {
+    break;
+  }
+}
 
 /**
  * Unsplash画像検索クラス
@@ -18,11 +29,11 @@ config({ path: join(__dirname, '..', '.env.local') });
 class UnsplashImageSearch {
   constructor() {
     this.accessKey = process.env.UNSPLASH_ACCESS_KEY;
-    
+
     if (!this.accessKey) {
       console.error('❌ Error: UNSPLASH_ACCESS_KEY not found in .env.local');
       console.error('📝 Please create .env.local file with your Unsplash API key');
-      console.error('📖 See .env.local.example for reference');
+      console.error('📖 See README.md in the skill directory for setup instructions');
       process.exit(1);
     }
 
@@ -41,7 +52,7 @@ class UnsplashImageSearch {
   async searchImage(query, width = 800, quality = 80) {
     try {
       console.log(`🔍 Searching for: "${query}"`);
-      
+
       const result = await this.unsplash.search.getPhotos({
         query,
         page: 1,
@@ -51,25 +62,25 @@ class UnsplashImageSearch {
 
       if (result.errors) {
         console.error('❌ API Error:', result.errors);
-        return this.getFallbackImageUrl(query, width, quality);
+        return this.getFallbackImageUrl(query, width);
       }
 
       const photos = result.response.results;
-      
+
       if (!photos || photos.length === 0) {
         console.log(`⚠️  No images found for "${query}"`);
-        return this.getFallbackImageUrl(query, width, quality);
+        return this.getFallbackImageUrl(query, width);
       }
 
       // 最初の画像を選択（通常は最も関連性が高い）
       const selectedPhoto = photos[0];
-      
+
       // 最適化されたURLを生成
       const optimizedUrl = `${selectedPhoto.urls.raw}&w=${width}&q=${quality}&fm=webp&fit=crop`;
-      
+
       console.log(`✅ Found image by ${selectedPhoto.user.name}`);
       console.log(`📸 Image URL: ${optimizedUrl}`);
-      
+
       // ダウンロード追跡（Unsplash API規約に準拠）
       if (selectedPhoto.links.download_location) {
         try {
@@ -80,12 +91,12 @@ class UnsplashImageSearch {
           console.warn('⚠️  Could not track download:', trackError.message);
         }
       }
-      
+
       return optimizedUrl;
-      
+
     } catch (error) {
       console.error('❌ Search failed:', error.message);
-      return this.getFallbackImageUrl(query, width, quality);
+      return this.getFallbackImageUrl(query, width);
     }
   }
 
@@ -93,10 +104,9 @@ class UnsplashImageSearch {
    * フォールバック画像URLを生成
    * @param {string} query 検索キーワード
    * @param {number} width 画像幅
-   * @param {number} quality 画像品質
    * @returns {string} フォールバック画像URL
    */
-  getFallbackImageUrl(query, width, quality) {
+  getFallbackImageUrl(query, width) {
     console.log(`🔄 Using fallback image for "${query}"`);
     // より安定したUnsplash Sourceを使用
     const fallbackQuery = encodeURIComponent(query.split(' ')[0]); // 最初の単語のみ使用
@@ -112,13 +122,13 @@ class UnsplashImageSearch {
    */
   async searchMultipleImages(queries, width = 800, quality = 80) {
     const results = {};
-    
+
     for (const query of queries) {
       results[query] = await this.searchImage(query, width, quality);
       // レート制限を回避するため少し待機
       await new Promise(resolve => setTimeout(resolve, 200));
     }
-    
+
     return results;
   }
 }
@@ -128,7 +138,7 @@ class UnsplashImageSearch {
  */
 async function main() {
   const args = process.argv.slice(2);
-  
+
   if (args.length === 0) {
     console.log('📖 Usage:');
     console.log('  node unsplash-search.js "search keyword"');
@@ -141,9 +151,9 @@ async function main() {
   }
 
   const searcher = new UnsplashImageSearch();
-  
+
   const input = args[0];
-  const keywords = input.includes(',') 
+  const keywords = input.includes(',')
     ? input.split(',').map(k => k.trim())
     : [input.trim()];
 
@@ -157,7 +167,7 @@ async function main() {
       // 複数キーワード検索
       console.log(`🔍 Searching for ${keywords.length} images...`);
       const results = await searcher.searchMultipleImages(keywords);
-      
+
       console.log('\n🎉 Results:');
       for (const [keyword, url] of Object.entries(results)) {
         console.log(`${keyword}: ${url}`);

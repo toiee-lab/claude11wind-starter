@@ -25,7 +25,7 @@
     "setup": "npm install && npm run build",
     "lint": "echo \"Linting not configured yet\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "search": "node dev-tools/unsplash-search.js"
+    "search": "node .claude/skills/unsplash-image-finder/scripts/unsplash-search.js"
   },
   "keywords": [
     "eleventy",
