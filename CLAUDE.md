@@ -149,7 +149,7 @@ eleventy-project/
 | Tailwind CSS | v4.1+ | スタイリング | コード最小化、エラー削減 |
 | Animate.css | v4.1.1+ | 控えめなアニメーション | ベストプラクティスに従う |
 | AOS | v2.3+ | スクロールアニメーション | またはAnimate.css + Intersection Observer API |
-| Lucide | v0.536.0+ | アイコン・ロゴ | https://lucide.dev/ |
+| Lucide | v0.536.0+ | アイコン・ロゴ | https://lucide.dev/ (CDNを使って実装する)|
 
 ### HTML構造要件
 - **セマンティック要素**: header, nav, main, section, article, footer を適切に使用
@@ -162,6 +162,32 @@ eleventy-project/
 - CSS/JSの使用を最小限に
 - 不要なライブラリを避ける
 - 外部依存関係を削減
+
+### 利用可能なフィルター
+
+テンプレートで使用できるNunjucksフィルターの一覧です。
+
+| フィルター | 説明 | 使用例 | 出力例 |
+|-----------|------|--------|--------|
+| `date` | 日付フォーマット | `{{ date \| date }}` | "2024/1/15" |
+| `absoluteUrl` | 絶対URL生成 | `{{ url \| absoluteUrl(site.url) }}` | 完全なURL |
+| `truncate` | 文字数制限（日本語対応） | `{{ text \| truncate(50) }}` | 50文字で切り詰め |
+| `readingTime` | 読書時間計算（日本語対応） | `{{ content \| readingTime }}` | "3分" |
+| `limit` | 配列の先頭N件取得 | `{{ collections.blog \| limit(5) }}` | 最初の5件 |
+
+**使用例**:
+```nunjucks
+{# ブログ記事の説明を50文字で切り詰め #}
+<p>{{ post.data.description | truncate(50) }}</p>
+
+{# 記事の読書時間を表示 #}
+<span>読書時間: {{ content | readingTime }}</span>
+
+{# 最新の3件のニュースを表示 #}
+{% for news in collections.news | limit(3) %}
+  <article>{{ news.data.title }}</article>
+{% endfor %}
+```
 
 ## デザイン仕様
 

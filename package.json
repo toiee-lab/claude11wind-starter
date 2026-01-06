@@ -15,8 +15,9 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production eleventy",
     "build:dev": "eleventy",
-    "serve": "eleventy --serve",
-    "serve:quiet": "eleventy --serve --quiet",
+    "serve": "eleventy --serve --incremental",
+    "serve:quiet": "eleventy --serve --incremental --quiet",
+    "serve:full": "eleventy --serve",
     "start": "npm run serve",
     "clean": "rm -rf _site",
     "debug": "DEBUG=Eleventy* eleventy",

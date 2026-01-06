@@ -92,6 +92,21 @@ export default function(eleventyConfig) {
   eleventyConfig.addWatchTarget("src/assets/css/");
   eleventyConfig.addWatchTarget("src/assets/js/");
 
+  // ウォッチスロットル設定（ファイル保存の連続実行を防止）
+  eleventyConfig.setWatchThrottleWaitTime(100);
+
+  // 開発サーバー起動時の日本語メッセージ
+  eleventyConfig.on("eleventy.after", async ({ runMode }) => {
+    if (runMode === "serve") {
+      console.log("\n========================================");
+      console.log("開発サーバーが起動しました");
+      console.log("http://localhost:8080 を開いてください");
+      console.log("ファイルを保存すると自動的に反映されます");
+      console.log("終了するには Ctrl+C を押してください");
+      console.log("========================================\n");
+    }
+  });
+
   // 分割した設定を適用
   configureFilters(eleventyConfig);
   configureShortcodes(eleventyConfig);
